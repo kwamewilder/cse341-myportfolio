@@ -6,7 +6,7 @@
     "description": "Profile API",
     "version": "1.0.0"
   },
-  "host": "localhost:8080",
+  "host": "https://cse341-profile.onrender.com",
   "basePath": "/",
   "schemes": [
     "https"
