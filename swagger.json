@@ -54,7 +54,7 @@
         }
       }
     },
-    "/users/{username}": {
+    "/user/{username}": {
       "get": {
         "summary": "Get a user by username",
         "parameters": [
@@ -134,7 +134,7 @@
         }
       }
     },
-    "/users/region/{regionName}": {
+    "/user/region/{regionName}": {
       "get": {
         "summary": "Get users by region name",
         "parameters": [
