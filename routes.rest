@@ -1,0 +1,67 @@
+// LOCALHOST
+###
+GET http://localhost:8080/user
+
+### Create a new contact
+POST http://localhost:8080/user HTTP/1.1 
+content-Type: application/json
+
+{
+    "username": "alex_jones",
+        "password": "securePass",
+        "displayName": "Alex Jones",
+        "email": "alexjones@example.com",
+        "phoneNumber": "+1122334455",
+        "bio": "",
+        "age": 40,
+        "region": "Australia",
+        "interests": ["Gaming", "Technology"],
+        "socialMedia": {}
+       
+}
+
+### Update the contact
+PUT http://localhost:8080/contacts/6452bc19942cecca0838c44d HTTP/1.1 
+content-Type: application/json
+
+{
+  "firstName": "Van",
+  "lastName": "Wilder",
+  "email": "vanwilder@example.com",
+  "favoriteColor": "green",
+  "birthday": "1992-01-01"
+}
+### Delete the contact
+DELETE http://localhost:8080/contacts/6452bc19942cecca0838c44d
+
+
+
+//RENDER
+###
+GET https://cse341-rwbv.onrender.com/contacts
+
+### Create a new contact
+POST https://cse341-rwbv.onrender.com/contacts HTTP/1.1 
+content-Type: application/json
+
+{
+  "firstName": "Max",
+  "lastName": "Payne",
+  "email": "maxpayne@example.com",
+  "favoriteColor": "yellow",
+  "birthday": "1990-01-01"
+}
+
+### Update the contact
+PUT https://cse341-rwbv.onrender.com/contacts/6452bd221a7efd15373bcebe HTTP/1.1 
+content-Type: application/json
+
+{
+  "firstName": "Van",
+  "lastName": "Wilder",
+  "email": "vanwilder@example.com",
+  "favoriteColor": "green",
+  "birthday": "1992-01-01"
+}
+### Delete the contact
+DELETE https://cse341-rwbv.onrender.com/contacts/6452bd221a7efd15373bcebe
