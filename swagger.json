@@ -133,7 +133,7 @@
         }
       }
     },
-    "/user/region/{regionName}": {
+    "/region/{regionName}": {
       "get": {
         "summary": "Get users by region name",
         "parameters": [

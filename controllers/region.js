@@ -45,6 +45,15 @@ exports.getUsersByRegion = async (req, res) => {
   }
 };
 
+exports.getRegionByName = async (regionName) => {
+  try {
+    const region = await Region.findOne({ name: regionName });
+    return region;
+  } catch (err) {
+    throw new Error('Error retrieving region by name');
+  }
+};
+
 exports.getAllUsers = async (req, res) => {
   try {
     const users = await User.find();

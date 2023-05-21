@@ -1,4 +1,6 @@
 const db = require('../models');
+const RegionController = require('../controllers/regionController');
+
 const User = db.user;
 const Region = db.region;
 
@@ -78,3 +80,28 @@ exports.updateUser = async (req, res) => {
     });
   }
 };
+
+exports.getUsersByRegion = async (req, res) => {
+  try {
+    const regionName = req.params.regionName;
+    const region = await RegionController.getRegionByName(regionName);
+
+    if (!region) {
+      return res.status(404).send({ message: 'Region not found' });
+    }
+
+    const users = await User.find({ region: region._id });
+
+    if (users.length === 0) {
+      return res.status(404).send({ message: 'No users found for the specified region' });
+    }
+
+    return res.send(users);
+  } catch (err) {
+    return res.status(500).send({
+      message: 'Error retrieving users by region',
+      error: err
+    });
+  }
+};
+
