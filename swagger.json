@@ -154,6 +154,37 @@
           }
         }
       }
+    },
+    "/user/region/{regionName}": {
+      "get": {
+        "summary": "Get users by region",
+        "parameters": [
+          {
+            "name": "regionName",
+            "in": "path",
+            "description": "Region name",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of users by region",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          },
+          "404": {
+            "description": "Region not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
     }
   },
   "definitions": {

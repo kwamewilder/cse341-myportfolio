@@ -1,5 +1,4 @@
 const db = require('../models');
-const RegionController = require('../controllers/regionController');
 
 const User = db.user;
 const Region = db.region;
@@ -84,6 +83,7 @@ exports.updateUser = async (req, res) => {
 exports.getUsersByRegion = async (req, res) => {
   try {
     const regionName = req.params.regionName;
+    // eslint-disable-next-line no-undef
     const region = await RegionController.getRegionByName(regionName);
 
     if (!region) {

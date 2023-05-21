@@ -16,4 +16,19 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.get('/region/:regionName', async (req, res) => {
+  try {
+    const regionName = req.params.regionName;
+
+    // Retrieve users by region name from your database
+    // eslint-disable-next-line no-undef
+    const users = await User.find({ region: regionName });
+
+    return res.status(200).json(users);
+  } catch (err) {
+    return res.status(500).json({ message: 'Internal server error', error: err });
+  }
+});
+
+
 module.exports = router;
