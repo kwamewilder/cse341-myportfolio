@@ -19,17 +19,52 @@ content-Type: application/json
         "socialMedia": {}
        
 }
+{
+    "username": "sarah_wilson",
+        "password": "pass1234",
+        "displayName": "Sarah Wilson",
+        "email": "sarahwilson@example.com",
+        "phoneNumber": "+9988776655",
+        "bio": "Explorer | Dreamer | Nature lover",
+        "age": 28,
+        "region": "North America",
+        "interests": ["Travel", "Yoga", "Reading"],
+        "socialMedia": {
+          "instagram": "sarahwilson"
+        }
+       
+}
+"username": "mike_adams",
+        "password": "mikepass",
+        "displayName": "Mike Adams",
+        "email": "mikeadams@example.com",
+        "phoneNumber": "+1122334455",
+        "bio": "Lover of all things tech!",
+        "age": 32,
+        "region": "North America",
+        "interests": ["Programming", "Gadgets"],
+        "socialMedia": {
+          "twitter": "mikeadams",
+          "github": "mikeadams"
+        }
+
+
 
 ### Update the contact
 PUT http://localhost:8080/contacts/6452bc19942cecca0838c44d HTTP/1.1 
 content-Type: application/json
 
 {
-  "firstName": "Van",
-  "lastName": "Wilder",
-  "email": "vanwilder@example.com",
-  "favoriteColor": "green",
-  "birthday": "1992-01-01"
+ "username": "david_miller",
+        "password": "password1",
+        "displayName": "David Miller",
+        "email": "davidmiller@example.com",
+        "phoneNumber": "+1122334455",
+        "bio": "",
+        "age": 0,
+        "region": "",
+        "interests": [],
+        "socialMedia": {}
 }
 ### Delete the contact
 DELETE http://localhost:8080/contacts/6452bc19942cecca0838c44d
@@ -38,30 +73,69 @@ DELETE http://localhost:8080/contacts/6452bc19942cecca0838c44d
 
 //RENDER
 ###
-GET https://cse341-rwbv.onrender.com/contacts
+GET https://cse341-profile.onrender.com/user
 
 ### Create a new contact
-POST https://cse341-rwbv.onrender.com/contacts HTTP/1.1 
+POST https://cse341-rwbv.onrender.com/user HTTP/1.1 
 content-Type: application/json
 
 {
-  "firstName": "Max",
-  "lastName": "Payne",
-  "email": "maxpayne@example.com",
-  "favoriteColor": "yellow",
-  "birthday": "1990-01-01"
+    "username": "alex_jones",
+        "password": "securePass",
+        "displayName": "Alex Jones",
+        "email": "alexjones@example.com",
+        "phoneNumber": "+1122334455",
+        "bio": "",
+        "age": 40,
+        "region": "Australia",
+        "interests": ["Gaming", "Technology"],
+        "socialMedia": {}
+       
 }
+{
+    "username": "sarah_wilson",
+        "password": "pass1234",
+        "displayName": "Sarah Wilson",
+        "email": "sarahwilson@example.com",
+        "phoneNumber": "+9988776655",
+        "bio": "Explorer | Dreamer | Nature lover",
+        "age": 28,
+        "region": "North America",
+        "interests": ["Travel", "Yoga", "Reading"],
+        "socialMedia": {
+          "instagram": "sarahwilson"
+        }
+       
+}
+"username": "mike_adams",
+        "password": "mikepass",
+        "displayName": "Mike Adams",
+        "email": "mikeadams@example.com",
+        "phoneNumber": "+1122334455",
+        "bio": "Lover of all things tech!",
+        "age": 32,
+        "region": "North America",
+        "interests": ["Programming", "Gadgets"],
+        "socialMedia": {
+          "twitter": "mikeadams",
+          "github": "mikeadams"
+        }
 
 ### Update the contact
 PUT https://cse341-rwbv.onrender.com/contacts/6452bd221a7efd15373bcebe HTTP/1.1 
 content-Type: application/json
 
 {
-  "firstName": "Van",
-  "lastName": "Wilder",
-  "email": "vanwilder@example.com",
-  "favoriteColor": "green",
-  "birthday": "1992-01-01"
+ "username": "david_miller",
+        "password": "password1",
+        "displayName": "David Miller",
+        "email": "davidmiller@example.com",
+        "phoneNumber": "+1122334455",
+        "bio": "",
+        "age": 0,
+        "region": "",
+        "interests": [],
+        "socialMedia": {}
 }
 ### Delete the contact
 DELETE https://cse341-rwbv.onrender.com/contacts/6452bd221a7efd15373bcebe
