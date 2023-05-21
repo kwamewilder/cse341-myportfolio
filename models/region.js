@@ -1,24 +1,14 @@
 module.exports = (mongoose) => {
   const regionSchema = mongoose.Schema({
+    usernames: {
+      type: String,
+      required: true
+    },
     regionName: {
       type: String,
-      enum: ['Caucasian', 'White', 'Black', 'Asian', 'Indigenous', ] 
-    },
-    Continent: {
-      type: Number
-    },
-    Country: {
-      type: String
-    },
-    State: {
-      type: String
-    },
-    City: {
-      type: String
-    },
-    Zip: {
-      type: Number
+      required: true
     }
+   
   });
 
   const region = mongoose.model('regions', regionSchema);

@@ -1,0 +1,83 @@
+{
+    "region1": {
+      "regionName": "Caucasian",
+      "Continent": "Europe",
+      "Country": "Germany",
+      "State": "Bavaria",
+      "City": "Munich",
+      "Zip": 80331
+    },
+    "region2": {
+      "regionName": "White",
+      "Continent": "North America",
+      "Country": "United States",
+      "State": "California",
+      "City": "San Francisco",
+      "Zip": 94103
+    },
+    "region3": {
+      "regionName": "Black",
+      "Continent": "Africa",
+      "Country": "South Africa",
+      "State": "Gauteng",
+      "City": "Johannesburg",
+      "Zip": 2000
+    },
+    "region4": {
+      "regionName": "Asian",
+      "Continent": "Asia",
+      "Country": "South Korea",
+      "State": "Seoul",
+      "City": "Seoul",
+      "Zip": 4548
+    },
+    "region5": {
+      "regionName": "Indigenous",
+      "Continent": "Australia",
+      "Country": "Australia",
+      "State": "Queensland",
+      "City": "Cairns",
+      "Zip": 4870
+    },
+    "region6": {
+      "regionName": "Caucasian",
+      "Continent": "Europe",
+      "Country": "France",
+      "State": "Île-de-France",
+      "City": "Paris",
+      "Zip": 75001
+    },
+    "region7": {
+      "regionName": "White",
+      "Continent": "North America",
+      "Country": "Canada",
+      "State": "Ontario",
+      "City": "Toronto",
+      "Zip": "M5V 3L9"
+    },
+    "region8": {
+      "regionName": "Black",
+      "Continent": "Africa",
+      "Country": "Nigeria",
+      "State": "Lagos",
+      "City": "Lagos",
+      "Zip": 100001
+    },
+    "region9": {
+      "regionName": "Asian",
+      "Continent": "Asia",
+      "Country": "China",
+      "State": "Shanghai",
+      "City": "Shanghai",
+      "Zip": 200000
+    },
+    "region10": {
+      "regionName": "Indigenous",
+      "Continent": "North America",
+      "Country": "Mexico",
+      "State": "Yucatán",
+      "City": "Merida",
+      "Zip": 97000
+    }
+  }
+  

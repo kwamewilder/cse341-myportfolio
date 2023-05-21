@@ -1,0 +1,102 @@
+{
+        "user1":{
+        "username": "john_doe",
+        "password": "password123",
+        "displayName": "John Doe",
+        "email": "johndoe@example.com",
+        "phoneNumber": "+1234567890",
+        "bio": "Hello, I'm John!",
+        "age": 25,
+        "region": "North America",
+        "interests": ["Sports", "Music"],
+        "socialMedia": {
+          "twitter": "johndoe",
+          "instagram": "johndoe"
+        }
+      },
+        "user2":{
+        "username": "jane_smith",
+        "password": "pass456",
+        "displayName": "Jane Smith",
+        "email": "janesmith@example.com",
+        "phoneNumber": "+9876543210",
+        "bio": "I love traveling!",
+        "age": 30,
+        "region": "Europe",
+        "interests": ["Photography", "Hiking", "Cooking"],
+        "socialMedia": {
+          "instagram": "janesmith",
+          "pinterest": "janesmith"
+        }
+      },
+      "user3":{
+        "username": "alex_jones",
+        "password": "securePass",
+        "displayName": "Alex Jones",
+        "email": "alexjones@example.com",
+        "phoneNumber": "+1122334455",
+        "bio": "",
+        "age": 40,
+        "region": "Australia",
+        "interests": ["Gaming", "Technology"],
+        "socialMedia": {}
+      },
+        "user4":{
+        "username": "sarah_wilson",
+        "password": "pass1234",
+        "displayName": "Sarah Wilson",
+        "email": "sarahwilson@example.com",
+        "phoneNumber": "+9988776655",
+        "bio": "Explorer | Dreamer | Nature lover",
+        "age": 28,
+        "region": "North America",
+        "interests": ["Travel", "Yoga", "Reading"],
+        "socialMedia": {
+          "instagram": "sarahwilson"
+        }
+      },
+        "user5":{
+        "username": "mike_adams",
+        "password": "mikepass",
+        "displayName": "Mike Adams",
+        "email": "mikeadams@example.com",
+        "phoneNumber": "+1122334455",
+        "bio": "Lover of all things tech!",
+        "age": 32,
+        "region": "North America",
+        "interests": ["Programming", "Gadgets"],
+        "socialMedia": {
+          "twitter": "mikeadams",
+          "github": "mikeadams"
+        }
+      },
+        "user6":{
+        "username": "emma_jackson",
+        "password": "emma987",
+        "displayName": "Emma Jackson",
+        "email": "emmajackson@example.com",
+        "phoneNumber": "+1122334455",
+        "bio": "",
+        "age": 29,
+        "region": "Europe",
+        "interests": ["Fashion", "Photography", "Travel"],
+        "socialMedia": {
+          "instagram": "emmajackson",
+          "pinterest": "emmajackson"
+        }
+      },
+        "user7":{
+        "username": "david_miller",
+        "password": "password1",
+        "displayName": "David Miller",
+        "email": "davidmiller@example.com",
+        "phoneNumber": "+1122334455",
+        "bio": "",
+        "age": 0,
+        "region": "",
+        "interests": [],
+        "socialMedia": {}
+      }
+    
+  }
+  

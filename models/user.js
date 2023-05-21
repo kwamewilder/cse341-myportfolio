@@ -28,9 +28,9 @@ module.exports = (mongoose) => {
       type: Number,
       default: 0
     },
-    address: {
+    region: {
       type: String,
-      default: ''
+      
     },
     interests: {
       type: [String],

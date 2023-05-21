@@ -1,20 +1,27 @@
 const db = require('../models');
-const region = db.region;
+const User = db.user;
+const Region = db.region;
 
-exports.getregion = async (req, res) => {
+exports.storeRegion = async (req, res) => {
   try {
-    const regionName = req.params.regionName;
-    const data = await region.find({ regionName: regionName });
+    const username = req.params.username;
+    const user = await User.findOne({ username: username });
 
-    if (data.length === 0) {
-      res.status(404).send({ message: 'Not found region with name: ' + regionName });
-    } else {
-      res.send(data[0]);
+    if (!user) {
+      return res.status(404).send({ message: 'User not found' });
     }
+
+    const region = new Region({
+      username: user.username,
+      regionName: user.region
+    });
+
+    await region.save();
+
+    return res.send(region);
   } catch (err) {
-    res.status(500).send({
-      // eslint-disable-next-line no-undef
-      message: 'Error retrieving region with regionName=' + regionName,
+    return res.status(500).send({
+      message: 'Error storing user region',
       error: err
     });
   }
