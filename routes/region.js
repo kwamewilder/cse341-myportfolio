@@ -16,17 +16,18 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/region/:regionName', async (req, res) => {
+// Get users by region
+router.get('/user/region/:regionName', async (req, res) => {
+  const { regionName } = req.params;
+
   try {
-    const regionName = req.params.regionName;
-
-    // Retrieve users by region name from your database
-    // eslint-disable-next-line no-undef
     const users = await User.find({ region: regionName });
-
-    return res.status(200).json(users);
+    res.status(200).json(users);
   } catch (err) {
-    return res.status(500).json({ message: 'Internal server error', error: err });
+    res.status(500).json({
+      message: 'Error retrieving users by region',
+      error: err
+    });
   }
 });
 
