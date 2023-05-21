@@ -31,5 +31,6 @@
     "nodemon": "^2.0.22",
     "prettier": "^2.5.1",
     "swagger-autogen": "^2.23.1"
-  }
+  },
+  "keywords": []
 }
