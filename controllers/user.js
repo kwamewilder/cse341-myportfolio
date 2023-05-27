@@ -1,8 +1,7 @@
-//const db = require('../models');
-const User = require('../models/user.js'); // Import the User model
-const Region = require('../models/region.js'); // Import the Region model
-//const User = db.user;
-//const Region = db.region;
+const db = require('../models');
+
+const User = db.user;
+const Region = db.region;
 
 exports.create = async (req, res) => {
   try {
