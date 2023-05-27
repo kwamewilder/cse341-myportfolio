@@ -22,7 +22,7 @@ module.exports = (mongoose) => {
     },
     bio: {
       type: String,
-      default: ''
+      
     },
     age: {
       type: Number,
