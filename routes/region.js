@@ -21,7 +21,7 @@ router.get('/user/region/:regionName', async (req, res) => {
   const { regionName } = req.params;
 
   try {
-    const users = await User.find({ region: regionName });
+    const users = await users.find({ region: regionName });
     res.status(200).json(users);
   } catch (err) {
     res.status(500).json({

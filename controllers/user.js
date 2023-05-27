@@ -1,18 +1,19 @@
-const db = require('../models');
-
-const User = db.user;
-const Region = db.region;
+//const db = require('../models');
+const User = require('../models/user.js'); // Import the User model
+const Region = require('../models/region.js'); // Import the Region model
+//const User = db.user;
+//const Region = db.region;
 
 exports.create = async (req, res) => {
   try {
     // Validate request
     if (!req.body.username || !req.body.password || !req.body.region) {
-      return res.status(400).send({ message: 'Content can not be empty!' });
+      return res.status(400).send({ message: 'Content cannot be empty!' });
     }
 
-    const { username, region } = req.body;
+    const { username, password, region } = req.body;
 
-    const user = new User(req.body);
+    const user = new User({ username, password, region }); // Create the User instance with required properties
     const savedUser = await user.save();
 
     // Add the username to the region's list of usernames
