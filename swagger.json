@@ -196,11 +196,29 @@
         },
         "password": {
           "type": "string"
+        },
+        "region": {
+          "type": "string"
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "phoneNumber": {
+          "type": "string"
+        }
         }
       },
       "required": [
         "username",
-        "password"
+        "password",
+        "region",
+        "displayName",
+        "email",
+        "phoneNumber"
+        
       ]
     },
     "User": {

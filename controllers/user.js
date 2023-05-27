@@ -6,13 +6,13 @@ const Region = db.region;
 exports.create = async (req, res) => {
   try {
     // Validate request
-    if (!req.body.username || !req.body.password || !req.body.region) {
+    if (!req.body.username || !req.body.password || !req.body.region || !req.body.displayName || !req.body.email || !req.body.phoneNumber) {
       return res.status(400).send({ message: 'Content cannot be empty!' });
     }
 
-    const { username, password, region } = req.body;
+    const { username, password, region, displayName, email, phoneNumber } = req.body;
 
-    const user = new User({ username, password, region }); // Create the User instance with required properties
+    const user = new User({ username, password, region, displayName, email, phoneNumber }); // Create the User instance with all properties
     const savedUser = await user.save();
 
     // Add the username to the region's list of usernames
@@ -30,6 +30,7 @@ exports.create = async (req, res) => {
     });
   }
 };
+
 
 
 exports.getAll = async (req, res) => {
