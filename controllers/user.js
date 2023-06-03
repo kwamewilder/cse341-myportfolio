@@ -48,6 +48,9 @@ exports.getUser = async (req, res) => {
   try {
     const username = req.params.username;
     const data = await User.find({ username: username });
+    if (data.length === 0) {
+      return res.status(404).send({ message: 'User not found' });
+    }
     return res.send(data);
   } catch (err) {
     return res.status(500).send({
@@ -60,6 +63,9 @@ exports.deleteUser = async (req, res) => {
   try {
     const username = req.params.username;
     const data = await User.deleteOne({ username: username });
+    if (data.deletedCount === 0) {
+      return res.status(404).send({ message: 'User not found' });
+    }
     return res.send(data);
   } catch (err) {
     return res.status(500).send({
@@ -73,6 +79,9 @@ exports.updateUser = async (req, res) => {
     const username = req.params.username;
     const updates = req.body;
     const data = await User.findOneAndUpdate({ username: username }, updates, { new: true });
+    if (!data) {
+      return res.status(404).send({ message: 'User not found' });
+    }
     return res.send(data);
   } catch (err) {
     return res.status(500).send({
