@@ -1,7 +1,36 @@
+const bcrypt = require('bcrypt');
 const db = require('../models');
 
 const User = db.user;
 const Region = db.region;
+
+exports.login = async (req, res) => {
+  try {
+    const { username, password } = req.body;
+
+    // Find the user by username in the database
+    const user = await User.findOne({ username });
+
+    if (!user) {
+      return res.status(401).send({ message: 'Invalid username or password' });
+    }
+
+    // Compare the entered password with the hashed password stored in the database
+    const passwordMatch = await bcrypt.compare(password, user.password);
+
+    if (!passwordMatch) {
+      return res.status(401).send({ message: 'Invalid username or password' });
+    }
+
+    // Password is correct, proceed with login logic
+    // ...
+
+    res.send({ message: 'Login successful' });
+  } catch (err) {
+    // Error handling
+    res.status(500).send({ message: 'An error occurred' });
+  }
+};
 
 exports.create = async (req, res) => {
   try {
@@ -11,6 +40,9 @@ exports.create = async (req, res) => {
     }
 
     const { username, password, region, displayName, email, phoneNumber } = req.body;
+
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(password, 10); 
 
     const user = new User({ username, password, region, displayName, email, phoneNumber }); // Create the User instance with all properties
     const savedUser = await user.save();
