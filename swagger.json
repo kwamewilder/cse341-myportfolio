@@ -21,13 +21,6 @@
     "/user": {
       "get": {
         "summary": "Get all users",
-        "security": [
-          {
-            "OpenID": [
-              "openid"
-            ]
-          }
-        ],
         "responses": {
           "200": {
             "description": "List of users"
@@ -63,14 +56,6 @@
     "/user/{username}": {
       "get": {
         "summary": "Get a user by username",
-        "security": [
-          {
-            "OpenID": [
-              "openid"
-            ]
-          }
-        ],
-
         "parameters": [
           {
             "name": "username",
@@ -94,13 +79,6 @@
       },
       "put": {
         "summary": "Update a user by username",
-        "security": [
-          {
-            "OpenID": [
-              "openid"
-            ]
-          }
-        ],
         "parameters": [
           {
             "name": "username",
@@ -133,13 +111,6 @@
       },
       "delete": {
         "summary": "Delete a user by username",
-        "security": [
-          {
-            "OpenID": [
-              "openid"
-            ]
-          }
-        ],
         "parameters": [
           {
             "name": "username",
@@ -162,100 +133,21 @@
         }
       }
     },
-    "/region": {
-      "get": {
-        "summary": "Get all regions",
-        "responses": {
-          "200": {
-            "description": "List of regions"
-          },
-          "500": {
-            "description": "Internal server error"
-          }
-        }
-      }
-    },
     "/region/{regionName}": {
       "get": {
-        "summary": "Get a region by name",
+        "summary": "Get users by region name",
         "parameters": [
           {
             "name": "regionName",
             "in": "path",
-            "description": "Name of the region",
+            "description": "Region name",
             "required": true,
             "type": "string"
           }
         ],
         "responses": {
           "200": {
-            "description": "Region found"
-          },
-          "404": {
-            "description": "Region not found"
-          },
-          "500": {
-            "description": "Internal server error"
-          }
-        }
-      },
-      "put": {
-        "summary": "Update a region by ID",
-        "security": [
-          {
-            "OpenID": [
-              "openid"
-            ]
-          }
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "ID of the region",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "region",
-            "in": "body",
-            "description": "Updated region object",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/RegionInput"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Region updated successfully"
-          },
-          "500": {
-            "description": "Internal server error"
-          }
-        }
-      },
-      "delete": {
-        "summary": "Delete a region by ID",
-        "security": [
-          {
-            "OpenID": [
-              "openid"
-            ]
-          }
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "ID of the region",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Region deleted successfully"
+            "description": "List of users matching the region name"
           },
           "500": {
             "description": "Internal server error"
@@ -317,6 +209,7 @@
         "phoneNumber": {
           "type": "string"
         }
+        }
       },
       "required": [
         "username",
@@ -325,6 +218,7 @@
         "displayName",
         "email",
         "phoneNumber"
+        
       ]
     },
     "User": {
@@ -340,31 +234,5 @@
           "type": "string"
         }
       }
-    },
-    "securityDefinitions": {
-      "OpenID": {
-        "type": "oauth2",
-        "flow": "implicit",
-        "authorizationUrl": "https://example.com/oauth/authorize",
-        "scopes": {
-          "openid": "OpenID Connect"
-        }
-      }
-    },    
-    "RegionInput": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "name",
-        "description"
-      ]
     }
   }
-}

@@ -1,12 +1,6 @@
 const db = require('../models');
 const User = db.user;
 const Region = db.region;
-const requireLogin = require('../authMiddleware'); 
-const bcrypt = require('bcrypt');
-
-
-
-
 
 exports.storeRegion = async (req, res) => {
   try {
@@ -59,48 +53,7 @@ exports.getRegionByName = async (regionName) => {
     throw new Error('Error retrieving region by name');
   }
 };
-exports.updateRegion = async (req, res) => {
-  try {
-    const regionName = req.params.regionName;
-    const updatedRegion = req.body;
 
-    const region = await Region.findOneAndUpdate(
-      { name: regionName },
-      { $set: updatedRegion },
-      { new: true }
-    );
-
-    if (!region) {
-      return res.status(404).send({ message: 'Region not found' });
-    }
-
-    return res.send(region);
-  } catch (err) {
-    return res.status(500).send({
-      message: 'Error updating region',
-      error: err
-    });
-  }
-};
-
-exports.deleteRegion = async (req, res) => {
-  try {
-    const regionName = req.params.regionName;
-
-    const region = await Region.findOneAndDelete({ name: regionName });
-
-    if (!region) {
-      return res.status(404).send({ message: 'Region not found' });
-    }
-
-    return res.send(region);
-  } catch (err) {
-    return res.status(500).send({
-      message: 'Error deleting region',
-      error: err
-    });
-  }
-};
 exports.getAllUsers = async (req, res) => {
   try {
     const users = await User.find();

@@ -1,7 +1,4 @@
-const bcrypt = require('bcrypt');
 const db = require('../models');
-
-const saltRounds = 10;
 
 const User = db.user;
 const Region = db.region;
@@ -15,10 +12,7 @@ exports.create = async (req, res) => {
 
     const { username, password, region, displayName, email, phoneNumber } = req.body;
 
-    // Hash the password
-    const hashedPassword = await bcrypt.hash(password, saltRounds);
-
-    const user = new User({ username, password: hashedPassword, region, displayName, email, phoneNumber }); // Create the User instance with the hashed password
+    const user = new User({ username, password, region, displayName, email, phoneNumber }); // Create the User instance with all properties
     const savedUser = await user.save();
 
     // Add the username to the region's list of usernames
@@ -33,36 +27,6 @@ exports.create = async (req, res) => {
   } catch (err) {
     return res.status(500).send({
       message: err.message || 'Some error occurred while creating the user.'
-    });
-  }
-};
-
-exports.login = async (req, res) => {
-  // Retrieve the username and password from the request
-  const { username, password } = req.body;
-
-  try {
-    // Find the user by username
-    const user = await User.findOne({ username });
-
-    if (!user) {
-      return res.status(401).send({ message: 'Invalid username or password' });
-    }
-
-    // Compare the hashed password with the provided password
-    const isPasswordValid = await bcrypt.compare(password, user.password);
-
-    if (!isPasswordValid) {
-      return res.status(401).send({ message: 'Invalid username or password' });
-    }
-
-    // Password is valid, proceed with login logic
-
-    // ... login logic here ...
-
-  } catch (err) {
-    return res.status(500).send({
-      message: err.message || 'Some error occurred while logging in.'
     });
   }
 };
@@ -84,9 +48,6 @@ exports.getUser = async (req, res) => {
   try {
     const username = req.params.username;
     const data = await User.find({ username: username });
-    if (data.length === 0) {
-      return res.status(404).send({ message: 'User not found' });
-    }
     return res.send(data);
   } catch (err) {
     return res.status(500).send({
@@ -99,9 +60,6 @@ exports.deleteUser = async (req, res) => {
   try {
     const username = req.params.username;
     const data = await User.deleteOne({ username: username });
-    if (data.deletedCount === 0) {
-      return res.status(404).send({ message: 'User not found' });
-    }
     return res.send(data);
   } catch (err) {
     return res.status(500).send({
@@ -115,9 +73,6 @@ exports.updateUser = async (req, res) => {
     const username = req.params.username;
     const updates = req.body;
     const data = await User.findOneAndUpdate({ username: username }, updates, { new: true });
-    if (!data) {
-      return res.status(404).send({ message: 'User not found' });
-    }
     return res.send(data);
   } catch (err) {
     return res.status(500).send({
@@ -150,4 +105,3 @@ exports.getUsersByRegion = async (req, res) => {
     });
   }
 };
-

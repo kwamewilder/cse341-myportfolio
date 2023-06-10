@@ -1,12 +1,11 @@
+
 const express = require('express');
 const router = express.Router();
-const requireLogin = require('../authMiddleware'); 
 const db = require('../models');
 const Region = db.region;
-const regionController = require('../controllers/region');
 
-// Get all regions
-router.get('/', requireLogin, async (req, res) => {
+// Get regions
+router.get('/', async (req, res) => {
   try {
     const regions = await Region.find();
     res.send(regions);
@@ -18,11 +17,20 @@ router.get('/', requireLogin, async (req, res) => {
   }
 });
 
+// Get users by region
+router.get('/user/region/:regionName', async (req, res) => {
+  const { regionName } = req.params;
 
-
-
-router.put('/:regionName', requireLogin, regionController.updateRegion);
-router.delete('/:regionName', requireLogin, regionController.deleteRegion);
+  try {
+    const users = await users.find({ region: regionName });
+    res.status(200).json(users);
+  } catch (err) {
+    res.status(500).json({
+      message: 'Error retrieving users by region',
+      error: err
+    });
+  }
+});
 
 
 module.exports = router;

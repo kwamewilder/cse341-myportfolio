@@ -1,7 +1,7 @@
 module.exports = (mongoose) => {
   const regionSchema = mongoose.Schema({
     usernames: {
-      type: [String],
+      type: String,
       required: true
     },
     regionName: {
