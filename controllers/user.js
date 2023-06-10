@@ -1,36 +1,10 @@
 const bcrypt = require('bcrypt');
 const db = require('../models');
 
+const saltRounds = 10;
+
 const User = db.user;
 const Region = db.region;
-
-exports.login = async (req, res) => {
-  try {
-    const { username, password } = req.body;
-
-    // Find the user by username in the database
-    const user = await User.findOne({ username });
-
-    if (!user) {
-      return res.status(401).send({ message: 'Invalid username or password' });
-    }
-
-    // Compare the entered password with the hashed password stored in the database
-    const passwordMatch = await bcrypt.compare(password, user.password);
-
-    if (!passwordMatch) {
-      return res.status(401).send({ message: 'Invalid username or password' });
-    }
-
-    // Password is correct, proceed with login logic
-    // ...
-
-    res.send({ message: 'Login successful' });
-  } catch (err) {
-    // Error handling
-    res.status(500).send({ message: 'An error occurred' });
-  }
-};
 
 exports.create = async (req, res) => {
   try {
@@ -42,9 +16,9 @@ exports.create = async (req, res) => {
     const { username, password, region, displayName, email, phoneNumber } = req.body;
 
     // Hash the password
-    const hashedPassword = await bcrypt.hash(password, 10); 
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-    const user = new User({ username, password, region, displayName, email, phoneNumber }); // Create the User instance with all properties
+    const user = new User({ username, password: hashedPassword, region, displayName, email, phoneNumber }); // Create the User instance with the hashed password
     const savedUser = await user.save();
 
     // Add the username to the region's list of usernames
@@ -59,6 +33,36 @@ exports.create = async (req, res) => {
   } catch (err) {
     return res.status(500).send({
       message: err.message || 'Some error occurred while creating the user.'
+    });
+  }
+};
+
+exports.login = async (req, res) => {
+  // Retrieve the username and password from the request
+  const { username, password } = req.body;
+
+  try {
+    // Find the user by username
+    const user = await User.findOne({ username });
+
+    if (!user) {
+      return res.status(401).send({ message: 'Invalid username or password' });
+    }
+
+    // Compare the hashed password with the provided password
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+
+    if (!isPasswordValid) {
+      return res.status(401).send({ message: 'Invalid username or password' });
+    }
+
+    // Password is valid, proceed with login logic
+
+    // ... login logic here ...
+
+  } catch (err) {
+    return res.status(500).send({
+      message: err.message || 'Some error occurred while logging in.'
     });
   }
 };
