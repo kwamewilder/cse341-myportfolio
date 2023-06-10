@@ -1,7 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-
-
+require('dotenv').config();
 const port = process.env.PORT || 8080;
 const app = express();
 
@@ -10,10 +9,10 @@ const { auth } = require('express-openid-connect');
 const config = {
   authRequired: false,
   auth0Logout: true,
-  secret: 'a long, randomly-generated string stored in env',
-  baseURL: 'https://cse341-profile.onrender.com',
-  clientID: 'jjAammrRu0b42FQUqbfW9dm0Lo6aJ61Z',
-  issuerBaseURL: 'https://dev-dsvwpop7ugtq47ag.us.auth0.com'
+  issuerBaseURL: process.env.ISSUER_BASE_URL,
+  baseURL: process.env.BASE_URL,
+  clientID: process.env.CLIENT_ID,
+  secret: process.env.SECRET,
 };
 
 // auth router attaches /login, /logout, and /callback routes to the baseURL
