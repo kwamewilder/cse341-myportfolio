@@ -21,7 +21,7 @@ function requireLogin(req, res, next) {
   // Check if the user is authenticated
   if (req.oidc.isAuthenticated()) {
     // User is authenticated, redirect to the Swagger route
-    return res.redirect('/api-docs');
+    return res.redirect('/swagger');
   }
   
   // User is not authenticated, redirect to the login page
@@ -36,14 +36,14 @@ app.get('/', (req, res) => {
 // Apply the requireLogin middleware to the routes that require authentication
 app.use('/protected-page', requireLogin, (req, res) => {
   // Render the protected page
-  res.send('Protected Page');
+  res.send('/protected-page');
 });
 
 // Login route
 app.get('/login', (req, res) => {
   // Handle the login logic here
   // After successful login, manually redirect to the protected page
-  res.redirect('./routes/swagger.js');
+  res.redirect('/api-docs');
 });
 
 
