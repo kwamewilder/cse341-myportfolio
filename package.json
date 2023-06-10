@@ -23,7 +23,7 @@
     "graphql": "^16.6.0",
     "mongodb": "^4.4.0",
     "mongoose": "^6.11.1",
-    "swagger": "^0.0.1",
+    "swagger": "^0.7.5",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^4.6.3"
   },
