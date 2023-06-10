@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
 const db = require('../models');
-const saltRounds = 10;
+const saltRounds = bcrypt/bcrypt.genSaltSync(10);
 
 const User = db.user;
 const Region = db.region;
@@ -16,11 +16,10 @@ exports.create = async (req, res) => {
 
     // Hash the password
     const hashedPassword = await bcrypt.hash(password, saltRounds);
-    console.log('Password:', password);
-    console.log('Hashed Password:', hashedPassword);
+
     
 
-    const user = new User({ username, password, region, displayName, email, phoneNumber }); // Create the User instance with all properties
+    const user = new User({ username, password: hashedPassword, region, displayName, email, phoneNumber }); // Create the User instance with all properties
     const savedUser = await user.save();
 
     // Add the username to the region's list of usernames
