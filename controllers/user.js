@@ -16,7 +16,9 @@ exports.create = async (req, res) => {
 
     // Hash the password
     const hashedPassword = await bcrypt.hash(password, saltRounds);
-
+    console.log('Password:', password);
+    console.log('Hashed Password:', hashedPassword);
+    
 
     const user = new User({ username, password, region, displayName, email, phoneNumber }); // Create the User instance with all properties
     const savedUser = await user.save();
