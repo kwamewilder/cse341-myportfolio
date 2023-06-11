@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const db = require('../models');
-const saltRounds = bcrypt/bcrypt.genSaltSync(10);
+const saltRounds = bcrypt.genSaltSync(10);
+
 
 const User = db.user;
 const Region = db.region;
