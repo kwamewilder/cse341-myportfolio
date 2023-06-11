@@ -44,6 +44,11 @@ exports.create = async (req, res) => {
 exports.getAll = async (req, res) => {
   try {
     const data = await User.find({});
+
+    if (data.length === 0) {
+      return res.status(404).send({ message: 'No users found' });
+    }
+
     return res.send(data);
   } catch (err) {
     return res.status(500).send({
@@ -52,10 +57,16 @@ exports.getAll = async (req, res) => {
   }
 };
 
+
 exports.getUser = async (req, res) => {
   try {
     const username = req.params.username;
     const data = await User.find({ username: username });
+
+    if (data.length === 0) {
+      return res.status(404).send({ message: 'User not found' });
+    }
+
     return res.send(data);
   } catch (err) {
     return res.status(500).send({
@@ -68,6 +79,11 @@ exports.deleteUser = async (req, res) => {
   try {
     const username = req.params.username;
     const data = await User.deleteOne({ username: username });
+
+    if (data.deletedCount === 0) {
+      return res.status(404).send({ message: 'User not found' });
+    }
+
     return res.send(data);
   } catch (err) {
     return res.status(500).send({
@@ -76,18 +92,25 @@ exports.deleteUser = async (req, res) => {
   }
 };
 
+
 exports.updateUser = async (req, res) => {
   try {
     const username = req.params.username;
     const updates = req.body;
-// Check if the password is being updated
-if (updates.password) {
-  // Hash the new password
-  const hashedPassword = await bcrypt.hash(updates.password, saltRounds);
-  updates.password = hashedPassword;
-}
+
+    // Check if the password is being updated
+    if (updates.password) {
+      // Hash the new password
+      const hashedPassword = await bcrypt.hash(updates.password, saltRounds);
+      updates.password = hashedPassword;
+    }
 
     const data = await User.findOneAndUpdate({ username: username }, updates, { new: true });
+
+    if (!data) {
+      return res.status(404).send({ message: 'User not found' });
+    }
+
     return res.send(data);
   } catch (err) {
     return res.status(500).send({
@@ -95,6 +118,7 @@ if (updates.password) {
     });
   }
 };
+
 
 exports.getUsersByRegion = async (req, res) => {
   try {
