@@ -80,6 +80,13 @@ exports.updateUser = async (req, res) => {
   try {
     const username = req.params.username;
     const updates = req.body;
+// Check if the password is being updated
+if (updates.password) {
+  // Hash the new password
+  const hashedPassword = await bcrypt.hash(updates.password, saltRounds);
+  updates.password = hashedPassword;
+}
+
     const data = await User.findOneAndUpdate({ username: username }, updates, { new: true });
     return res.send(data);
   } catch (err) {
