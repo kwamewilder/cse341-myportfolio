@@ -10,15 +10,7 @@
   "schemes": [
     "https"
   ],
-  "securityDefinitions": {
-    "openid": {
-      "type": "oauth2",
-      "flow": "application",
-      "authorizationUrl": "https://dev-dsvwpop7ugtq47ag.us.auth0.com",
-      "scopes": { 
-        "openid": "OpenID Connect"
-    }
-    },
+  
   "paths": {
     "/api-docs": {
       "get": {
@@ -348,4 +340,4 @@
       ]
     }
   }
-}}
+}
