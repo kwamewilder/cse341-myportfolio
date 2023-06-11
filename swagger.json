@@ -10,6 +10,13 @@
   "schemes": [
     "https"
   ],
+  "securityDefinitions": {
+    "openid": {
+      "type": "oauth2",
+      "flow": "implicit",
+      "authorizationUrl": "https://dev-dsvwpop7ugtq47ag.us.auth0.com",
+      "scopes": {}
+    },
   "paths": {
     "/api-docs": {
       "get": {
@@ -79,6 +86,11 @@
       },
       "put": {
         "summary": "Update a user by username",
+        "security": [
+          {
+            "openid": []
+          }
+        ],
         "parameters": [
           {
             "name": "username",
@@ -111,6 +123,11 @@
       },
       "delete": {
         "summary": "Delete a user by username",
+        "security": [
+          {
+            "openid": []
+          }
+        ],
         "parameters": [
           {
             "name": "username",
@@ -126,6 +143,19 @@
           },
           "404": {
             "description": "User not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/region": {
+      "get": {
+        "summary": "Get regions",
+        "responses": {
+          "200": {
+            "description": "List of regions"
           },
           "500": {
             "description": "Internal server error"
@@ -185,6 +215,73 @@
           }
         }
       }
+    },
+    "/region/{regionId}": {
+      "put": {
+        "summary": "Update a region by ID",
+        "security": [
+          {
+            "openid": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "regionId",
+            "in": "path",
+            "description": "ID of the region",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "region",
+            "in": "body",
+            "description": "Updated region object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RegionInput"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Region updated successfully"
+          },
+          "404": {
+            "description": "Region not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a region by ID",
+        "security": [
+          {
+            "openid": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "regionId",
+            "in": "path",
+            "description": "ID of the region",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Region deleted successfully"
+          },
+          "404": {
+            "description": "Region not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -209,7 +306,6 @@
         "phoneNumber": {
           "type": "string"
         }
-        }
       },
       "required": [
         "username",
@@ -218,7 +314,6 @@
         "displayName",
         "email",
         "phoneNumber"
-        
       ]
     },
     "User": {
@@ -234,5 +329,21 @@
           "type": "string"
         }
       }
+    },
+    "RegionInput": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "description"
+      ]
     }
   }
+}}
