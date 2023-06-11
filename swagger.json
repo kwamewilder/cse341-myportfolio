@@ -15,7 +15,9 @@
       "type": "oauth2",
       "flow": "implicit",
       "authorizationUrl": "https://dev-dsvwpop7ugtq47ag.us.auth0.com",
-      "scopes": {}
+      "scopes": { 
+        "openid": "OpenID Connect"
+    }
     },
   "paths": {
     "/api-docs": {
@@ -88,7 +90,7 @@
         "summary": "Update a user by username",
         "security": [
           {
-            "openid": []
+            "openid": ["openid"]
           }
         ],
         "parameters": [
@@ -125,7 +127,7 @@
         "summary": "Delete a user by username",
         "security": [
           {
-            "openid": []
+            "openid": ["openid"]
           }
         ],
         "parameters": [
@@ -221,7 +223,7 @@
         "summary": "Update a region by ID",
         "security": [
           {
-            "openid": []
+            "openid": ["openid"]
           }
         ],
         "parameters": [
@@ -258,7 +260,7 @@
         "summary": "Delete a region by ID",
         "security": [
           {
-            "openid": []
+            "openid": ["openid"]
           }
         ],
         "parameters": [
