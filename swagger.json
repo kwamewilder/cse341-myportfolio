@@ -13,7 +13,7 @@
   "securityDefinitions": {
     "openid": {
       "type": "oauth2",
-      "flow": "implicit",
+      "flow": "application",
       "authorizationUrl": "https://dev-dsvwpop7ugtq47ag.us.auth0.com",
       "scopes": { 
         "openid": "OpenID Connect"
